@@ -1,0 +1,52 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.1.RELEASE'
+		keycloakVersion = "1.5.0.Final"
+	}
+	repositories {
+		mavenLocal()
+		mavenCentral()
+		jcenter()
+		maven { url "http://repo.spring.io/plugins-release" }
+		maven { url "http://repo.spring.io/milestone" }
+		maven { url "https://plugins.gradle.org/m2/" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "net.ltgt.gradle:gradle-apt-plugin:0.6"
+		classpath "org.springframework.build.gradle:propdeps-plugin:0.0.7"
+	}
+}
+
+configurations {
+	providedRuntime
+}
+
+apply plugin: 'java'
+apply plugin: 'propdeps'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'net.ltgt.apt'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+apply plugin: 'idea'
+
+jar {
+	baseName = 'Kingcross'
+	version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	provided 'org.projectlombok:lombok:1.16.10'
+	apt 'org.projectlombok:lombok:1.16.10'
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile("org.keycloak:keycloak-spring-security-adapter:$keycloakVersion")
+}

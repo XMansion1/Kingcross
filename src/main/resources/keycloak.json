@@ -1,0 +1,10 @@
+{
+  "realm": "",
+  "realm-public-key": "",
+  "auth-server-url": "",
+  "ssl-required": "none",
+  "resource": "kingcross",
+  "credentials": {
+    "secret": ""
+  }
+}
