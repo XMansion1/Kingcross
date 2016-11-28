@@ -55,6 +55,8 @@
  
  <!--Adding pattern filters for the role and page mappings -->
  <security:intercept-url pattern="/echo" access="permitAll" />
+ <security:intercept-url pattern="/actuator" access="permitAll" />
+
  <security:intercept-url pattern="/**" access="hasAnyRole('ROLE_TESTADMIN','ROLE_ENDUSER','ROLE_AIL_STAFF','ROLE_IRONMAN_ADMIN')" />
  <!--  Other roles can be added below. Do mind the order in which these roles are being added. -->
  <!-- <security:intercept-url pattern="/your/url/pattern" access="hasRole('ROLE_NewRole')" />  -->

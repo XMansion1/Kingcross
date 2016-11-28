@@ -26,7 +26,6 @@ apply plugin: 'java'
 apply plugin: 'propdeps'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'net.ltgt.apt'
-apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
 apply plugin: 'idea'
 
@@ -47,6 +46,7 @@ dependencies {
 	apt 'org.projectlombok:lombok:1.16.10'
 	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile("org.springframework.boot:spring-boot-starter-actuator")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	compile("org.keycloak:keycloak-spring-security-adapter:$keycloakVersion")
 }
