@@ -1,7 +1,7 @@
 buildscript {
 	ext {
 		springBootVersion = '1.4.1.RELEASE'
-		keycloakVersion = "1.5.0.Final"
+		keycloakVersion = "2.4.0.Final"
 	}
 	repositories {
 		mavenLocal()
@@ -15,6 +15,7 @@ buildscript {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 		classpath "net.ltgt.gradle:gradle-apt-plugin:0.6"
 		classpath "org.springframework.build.gradle:propdeps-plugin:0.0.7"
+		classpath('se.transmode.gradle:gradle-docker:1.2')
 	}
 }
 
@@ -30,11 +31,14 @@ apply plugin: 'spring-boot'
 apply plugin: 'idea'
 
 jar {
-	baseName = 'Kingcross'
+	baseName = 'kingcross'
 	version = '0.0.1-SNAPSHOT'
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+apply plugin: 'docker'
+group = 'kingcross'
 
 repositories {
 	mavenCentral()
@@ -48,5 +52,19 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	compile("org.springframework.boot:spring-boot-starter-actuator")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	compile("org.keycloak:keycloak-spring-security-adapter:$keycloakVersion")
+	compile("org.keycloak:keycloak-spring-boot-adapter:$keycloakVersion")
+	compile("org.keycloak:keycloak-tomcat8-adapter:$keycloakVersion")
+	compile("org.springframework.boot:spring-boot-devtools")
+}
+
+task buildDocker(type: Docker, dependsOn: build) {
+	push = false
+	applicationName = jar.baseName
+	dockerfile = file('src/main/docker/Dockerfile')
+	doFirst {
+		copy {
+			from jar
+			into stageDir
+		}
+	}
 }

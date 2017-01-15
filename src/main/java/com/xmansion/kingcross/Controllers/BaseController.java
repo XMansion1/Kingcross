@@ -21,7 +21,7 @@ public class BaseController {
 		log.error("Ahhh!!! there is no rule breaking here");
 		log.trace("Mischief Managed!");
 		log.warn("Dumbledore might still be aware of all are mischief");
-		String responseText = "Potter" + " says howdy !!!!";
+		String responseText = "Harry Potter" + " says howdy !!!!";
 		return new ResponseEntity<String>(
 				responseText, HttpStatus.OK);
 	}
