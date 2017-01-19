@@ -38,7 +38,8 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 apply plugin: 'docker'
-group = 'kingcross'
+group = 'anunay88'
+
 
 repositories {
 	mavenCentral()
@@ -60,6 +61,7 @@ dependencies {
 
 task buildDocker(type: Docker, dependsOn: build) {
 	push = false
+	tagVersion = jar.version
 	applicationName = jar.baseName
 	dockerfile = file('src/main/docker/Dockerfile')
 	doFirst {
