@@ -55,6 +55,7 @@ dependencies {
 	compile("org.keycloak:keycloak-spring-boot-adapter:$keycloakVersion")
 	compile("org.keycloak:keycloak-tomcat8-adapter:$keycloakVersion")
 	compile("org.springframework.boot:spring-boot-devtools")
+
 }
 
 task buildDocker(type: Docker, dependsOn: build) {

@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
 public class KingcrossApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(KingcrossApplication.class, args);
 	}
